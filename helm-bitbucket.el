@@ -6,18 +6,19 @@
 ;; Maintainer: Peter Urbak <tolowercase@gmail.com>
 ;; Keywords: helm bitbucket
 ;; URL: https://github.com/dragonwasrobot/helm-bitbucket
-;; Created: 14th April 2019
+;; Created: 18th April 2019
 ;; Version: 0.1.0
 
 ;;; Commentary:
 ;;
 ;; A search interface for Bitbucket.
 ;;
-;; Currently supports OSX, and (maybe) Linux & Windows.
+;; The search space is limited to a specific user or organization due to the
+;; limitations of Bitbucket's current REST API.
+;;
+;; API Reference: https://developer.atlassian.com/bitbucket/api/2/reference/
 
 ;;; Code:
-
-;;; API Reference: https://developer.atlassian.com/bitbucket/api/2/reference/
 (require 'url)
 (require 'json)
 (require 'helm)

@@ -1,18 +1,20 @@
 * Helm Bitbucket
-A helm interface for (a very small subset of) the Bitbucket API.
+A helm interface for searching Bitbucket API.
 
 ** Installation
 Download and install the =helm-bitbucket.el= file in your preferred way.
 
 =helm-bitbucket= uses the credentials stored in =.authinfo.gpg= for
-authenticating against the bitbucket API. So you need to add a line like this
+authenticating against the bitbucket API. So you need to add a line like this:
 
 #+BEGIN_EXAMPLE
 machine api.bitbucket.org login <my-username> password <my-password> port https
 #+END_EXAMPLE
 
-to your =.authinfo.gpg= file. If you are not familiar with =.authinfo=, check
-out https://www.emacswiki.org/emacs/GnusAuthinfo for further information.
+to your =.authinfo.gpg= file.
+
+If you are not familiar with =.authinfo=, check out
+https://www.emacswiki.org/emacs/GnusAuthinfo for further information.
 
 It is not currently possible to search across all Bitbucket repositories, so in
 order for =helm-bitbucket= to work, you have to set a =bitbucket-username=
