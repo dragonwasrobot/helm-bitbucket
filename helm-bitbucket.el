@@ -11,7 +11,7 @@
 
 ;;; Commentary:
 ;;
-;; A search interface for Bitbucket.
+;; A helm interface for searching Bitbucket.
 ;;
 ;; The search space is limited to a specific user or organization due to the
 ;; limitations of Bitbucket's current REST API.
