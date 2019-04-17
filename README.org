@@ -1,6 +1,8 @@
 * Helm Bitbucket
 A helm interface for searching Bitbucket API.
 
+[[helm-bitbucket.png]]
+
 ** Installation
 Download and install the =helm-bitbucket.el= file in your preferred way.
 
