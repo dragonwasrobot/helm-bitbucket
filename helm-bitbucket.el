@@ -13,8 +13,9 @@
 ;;
 ;; A helm interface for searching Bitbucket.
 ;;
-;; The search space is limited to a specific user or organization due to the
-;; limitations of Bitbucket's current REST API.
+;; Searches across all Bitbucket repositories for which you are a member, i.e.
+;; both personal repositories and the repositories of any Bitbucket team you are
+;; a member of.
 ;;
 ;; API Reference: https://developer.atlassian.com/bitbucket/api/2/reference/
 
@@ -52,7 +53,6 @@ using the local machine's web browser of choice."
         (repository-url (cdadr (assoc 'html repository-links))))
     (browse-url repository-url)))
 
-(defvar bitbucket-username)
 (defvar url-http-end-of-headers)
 (defun bitbucket-search (search-term)
   "Search Bitbucket for SEARCH-TERM, returning the results as a Lisp structure.
@@ -61,8 +61,7 @@ The SEARCH-TERM must be a substring of the repository name(s) you
 want to search for."
   (let* ((url-request-extra-headers (list (bitbucket-auth-header)))
          (query-string (concat "name~\"" search-term "\""))
-         (a-url (format "https://api.bitbucket.org/2.0/repositories/%s?q=%s"
-                        bitbucket-username
+         (a-url (format "https://api.bitbucket.org/2.0/repositories?role=member&q=%s"
                         query-string)))
     (with-current-buffer
 	      (url-retrieve-synchronously a-url)
