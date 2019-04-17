@@ -1,0 +1,20 @@
+* Contributing
+If you have found a bug or have a proposal for a new feature, feel free to open
+an issue so we can discuss a proper solution.
+
+** Reporting bugs
+When reporting a bug, please include:
+
+- A short description of the bug, and
+- how to reproduce it.
+
+** Pull requests
+Please do not create pull requests before an issue has been created and a
+solution has been discussed and agreed upon.
+
+When making a pull request ensure that:
+
+1. It solves one specific problem, and that problem has already been documented
+   and discussed as an issue,
+2. the PR solves the problem as agreed upon in the issue,
+3. the PR compiles.

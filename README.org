@@ -1,0 +1,43 @@
+* Helm Bitbucket
+A helm interface for (a very small subset of) the Bitbucket API.
+
+** Installation
+Download and install the =helm-bitbucket.el= file in your preferred way.
+
+=helm-bitbucket= uses the credentials stored in =.authinfo.gpg= for
+authenticating against the bitbucket API. So you need to add a line like this
+
+#+BEGIN_EXAMPLE
+machine api.bitbucket.org login <my-username> password <my-password> port https
+#+END_EXAMPLE
+
+to your =.authinfo.gpg= file. If you are not familiar with =.authinfo=, check
+out https://www.emacswiki.org/emacs/GnusAuthinfo for further information.
+
+It is not currently possible to search across all Bitbucket repositories, so in
+order for =helm-bitbucket= to work, you have to set a =bitbucket-username=
+narrowing down the search to a specific user or organization:
+
+#+BEGIN_EXAMPLE emacs-lisp
+(setq bitbucket-username "<my-username-or-organization>")
+#+END_EXAMPLE
+
+Thus, this mode is aimed at people who belong to a Bitbucket organization with a
+lot of repositories and want to quickly find and open the web page of a given
+project repository.
+
+** Usage
+Run =M-x helm-bitbucket= and type a search string. (The search begins after
+you've typed at least 2 characters)
+
+*** Keys
+| =C-n=   | Next item.                       |
+| =C-p=   | Previous item.                   |
+| =RET=   | Open repository page in browser  |
+| =C-h m= | Full list of keyboard shortcuts. |
+
+** Contributing
+See =CONTRIBUTING.org=.
+
+** Credits
+This project was originally inspired by https://github.com/krisajenkins/helm-spotify.
