@@ -1,13 +1,14 @@
-;;; helm-bitbucket.el --- Search Bitbucket with Helm.
+;;; helm-bitbucket.el --- Search Bitbucket with Helm -*- lexical-binding: t -*-
 ;;
 ;; Copyright 2019 Peter Urbak
 ;;
 ;; Author: Peter Urbak <tolowercase@gmail.com>
 ;; Maintainer: Peter Urbak <tolowercase@gmail.com>
+;; Created: 18th April 2019
 ;; Keywords: helm bitbucket
 ;; URL: https://github.com/dragonwasrobot/helm-bitbucket
-;; Created: 18th April 2019
 ;; Version: 0.1.0
+;; Package-Requires: ((json "1.4") (helm "20190326.1022"))
 
 ;;; Commentary:
 ;;
@@ -20,6 +21,7 @@
 ;; API Reference: https://developer.atlassian.com/bitbucket/api/2/reference/
 
 ;;; Code:
+
 (require 'url)
 (require 'json)
 (require 'helm)
