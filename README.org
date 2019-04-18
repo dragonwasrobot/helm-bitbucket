@@ -1,5 +1,5 @@
 * Helm Bitbucket
-A [[https://github.com/emacs-helm/helm][helm]] interface for searching Bitbucket API.
+A [[https://github.com/emacs-helm/helm][helm]] interface for searching Bitbucket.
 
 [[helm-bitbucket.png]]
 
