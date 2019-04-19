@@ -7,7 +7,7 @@ A [[https://github.com/emacs-helm/helm][helm]] interface for searching Bitbucket
 Download and install the =helm-bitbucket.el= file in your preferred way.
 
 =helm-bitbucket= uses the credentials stored in =.authinfo.gpg= for
-authenticating against the bitbucket API. So you need to add a line like this:
+authenticating against the bitbucket API. So you need to add:
 
 #+BEGIN_EXAMPLE
 machine api.bitbucket.org login <my-username> password <my-password> port https

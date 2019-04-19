@@ -7,7 +7,7 @@
 ;; Created: 14th April 2019
 ;; Keywords: helm bitbucket
 ;; Homepage: https://github.com/dragonwasrobot/helm-bitbucket
-;; Version: 0.1.1
+;; Version: 0.1.2
 ;; Package-Requires: ((json "1.4") (helm "3.0"))
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,9 +37,11 @@
 ;; Download and install the `helm-bitbucket.el' file in your preferred way.
 
 ;; `helm-bitbucket' uses the credentials stored in `.authinfo.gpg' for
-;; authenticating against the bitbucket API. So you need to add a line like
-;; this: `machine api.bitbucket.org login <my-username> password <my-password>
-;; port https' to your `.authinfo.gpg' file.
+;; authenticating against the bitbucket API. So you need to add:
+
+;; `machine api.bitbucket.org login <my-username> password <my-password> port https'
+
+;; to your `.authinfo.gpg' file.
 
 ;; If you are not familiar with `.authinfo', check out
 ;; https://www.emacswiki.org/emacs/GnusAuthinfo for further information.
@@ -135,11 +137,6 @@ want to search for."
   "Helm function for searching bitbucket repositories."
   (bitbucket-search-formatted helm-pattern))
 
-(defun helm-bitbucket-actions-for-repository (actions repository)
-  "Return a list of helm ACTIONS available for this REPOSITORY."
-  `((,(format "Open Repository - %s" (assoc 'full_name repository))
-     . bitbucket-open-repository)))
-
 ;;;###autoload
 (defvar helm-source-bitbucket-repository-search
   '((name . "Bitbucket")
@@ -147,7 +144,7 @@ want to search for."
     (delayed)
     (requires-pattern . 2)
     (candidates . helm-bitbucket-search)
-    (action-transformer . helm-bitbucket-actions-for-repository)))
+    (action . (("Browse Repository" . bitbucket-open-repository)))))
 
 ;;;###autoload
 (defun helm-bitbucket ()
