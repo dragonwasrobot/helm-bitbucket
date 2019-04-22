@@ -3,7 +3,7 @@
 ;; Author: Peter Urbak <tolowercase@gmail.com>
 ;; URL: https://github.com/dragonwasrobot/helm-bitbucket
 ;; Version: 0.1.2
-;; Package-Requires: ((emacs "24") (helm "3.0"))
+;; Package-Requires: ((emacs "24") (helm-core "3.0"))
 ;; Keywords: matching
 
 ;; Copyright (C) 2019  Peter Urbak
@@ -35,7 +35,7 @@
 ;; Download and install the `helm-bitbucket.el' file in your preferred way.
 ;;
 ;; `helm-bitbucket' uses the credentials stored in `.authinfo.gpg' for
-;; authenticating against the bitbucket API. So you need to add:
+;; authenticating against the bitbucket API.  So you need to add:
 ;;
 ;; `machine api.bitbucket.org login <my-username> password <my-password> port https'
 ;;
@@ -46,7 +46,7 @@
 ;;
 ;; It is not currently possible to search across all Bitbucket repositories, so
 ;; `helm-bitbucket' searches all repositories for which your registered
-;; Bitbucket user is a member. Thus, `helm-bitbucket' searches both your
+;; Bitbucket user is a member.  Thus, `helm-bitbucket' searches both your
 ;; personal repositories and the repositories of any Bitbucket team you are a
 ;; member of.
 ;;
@@ -54,7 +54,7 @@
 
 ;; ** Usage
 ;;
-;; Run `M-x helm-bitbucket' and type a search string. (The search begins after
+;; Run `M-x helm-bitbucket' and type a search string.  (The search begins after
 ;; you've typed at least 2 characters).
 ;;
 ;; Hitting =RET= with an item selected opens the corresponding repository in your
@@ -65,11 +65,10 @@
 ;; | =C-n=   | Next item.                       |
 ;; | =C-p=   | Previous item.                   |
 ;; | =RET=   | Open repository page in browser  |
-;; | =C-h m= | Full list of keyboard shortcuts. |
+;; | =C-h m= | Full list of keyboard shortcuts  |
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
 (require 'helm)
 (require 'url)
 (require 'json)
@@ -82,8 +81,7 @@ nil otherwise."
   (let* ((bitbucket-auth-source (auth-source-user-and-password "api.bitbucket.org"))
          (username (car bitbucket-auth-source))
          (password (cadr bitbucket-auth-source)))
-    (if (or (eq username nil) (eq password nil))
-        nil
+    (when (and username password)
       (cons username password))))
 
 (defun helm-bitbucket-auth-header ()
@@ -103,7 +101,7 @@ Result format is (\"Authorization\" . \"Basic <CREDENTIALS>\")."
 Opens the web page \"https://bitbucket.org/<user>/<repository>/\"
 using the local machine's web browser of choice."
   (let* ((repository-links (assoc 'links repository))
-        (repository-url (cdadr (assoc 'html repository-links))))
+         (repository-url (cdadr (assoc 'html repository-links))))
     (browse-url repository-url)))
 
 (defvar url-http-end-of-headers)
@@ -117,20 +115,19 @@ want to search for."
          (a-url (format "https://api.bitbucket.org/2.0/repositories?role=member&q=%s"
                         query-string)))
     (with-current-buffer
-	      (url-retrieve-synchronously a-url)
+        (url-retrieve-synchronously a-url)
       (goto-char url-http-end-of-headers)
       (json-read))))
 
 (defun helm-bitbucket-format-repository (repository)
   "Given a REPOSITORY, return a formatted string suitable for display."
-  (let ((repository-name (cdr (assoc 'full_name repository))))
-    repository-name))
+  (cdr (assoc 'full_name repository)))
 
 (defun helm-bitbucket-search-formatted (search-term)
   "Formats the resulting helm results when searching for SEARCH-TERM."
   (mapcar (lambda (repository)
-	          (cons (helm-bitbucket-format-repository repository) repository))
-	        (cdr (assoc 'values (helm-bitbucket-search-term search-term)))))
+            (cons (helm-bitbucket-format-repository repository) repository))
+          (cdr (assoc 'values (helm-bitbucket-search-term search-term)))))
 
 (defun helm-bitbucket-search ()
   "Helm function for searching bitbucket repositories."
@@ -148,10 +145,10 @@ want to search for."
 (defun helm-bitbucket ()
   "Use Helm to search for and open Bitbucket repositories in your browser."
   (interactive)
-  (if (eq (helm-bitbucket-credentials) nil)
+  (if (null (helm-bitbucket-credentials))
       (message "Could not find credentials for api.bitbucket.org in local .authinfo.gpg")
-      (helm :sources '(helm-bitbucket-source-repository-search)
-	          :buffer "*helm-bitbucket*")))
+    (helm :sources '(helm-bitbucket-source-repository-search)
+          :buffer "*helm-bitbucket*")))
 
 (provide 'helm-bitbucket)
 ;;; helm-bitbucket.el ends here
