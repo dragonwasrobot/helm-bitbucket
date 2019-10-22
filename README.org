@@ -1,10 +1,16 @@
 * Helm Bitbucket
+
+[[http://melpa.org/#/helm-bitbucket][file:https://melpa.org/packages/helm-bitbucket-badge.svg]]
+[[http://stable.melpa.org/#/helm-bitbucket][file:http://stable.melpa.org/packages/helm-bitbucket-badge.svg]]
+
 A [[https://github.com/emacs-helm/helm][helm]] interface for searching Bitbucket.
 
 [[helm-bitbucket.png]]
 
 ** Installation
 Download and install the =helm-bitbucket.el= file in your preferred way.
+
+MELPA link: https://melpa.org/#/helm-bitbucket.
 
 =helm-bitbucket= uses the credentials stored in =.authinfo.gpg= for
 authenticating against the bitbucket API. So you need to add:
