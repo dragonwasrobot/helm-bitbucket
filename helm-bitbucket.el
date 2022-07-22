@@ -2,11 +2,11 @@
 ;;
 ;; Author: Peter Urbak <tolowercase@gmail.com>
 ;; URL: https://github.com/dragonwasrobot/helm-bitbucket
-;; Version: 0.1.3
+;; Version: 0.1.4
 ;; Package-Requires: ((emacs "24") (helm-core "3.6.0"))
 ;; Keywords: matching
 
-;; Copyright (C) 2019  Peter Urbak
+;; Copyright (C) 2022  Peter Urbak
 ;;
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
