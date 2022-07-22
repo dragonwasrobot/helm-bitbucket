@@ -3,7 +3,7 @@
 ;; Author: Peter Urbak <tolowercase@gmail.com>
 ;; URL: https://github.com/dragonwasrobot/helm-bitbucket
 ;; Version: 0.1.3
-;; Package-Requires: ((emacs "24") (helm-core "3.0"))
+;; Package-Requires: ((emacs "24") (helm-core "3.6.0"))
 ;; Keywords: matching
 
 ;; Copyright (C) 2019  Peter Urbak
@@ -69,7 +69,7 @@
 
 ;;; Code:
 
-(require 'helm)
+(require 'helm-core)
 (require 'url)
 (require 'json)
 
